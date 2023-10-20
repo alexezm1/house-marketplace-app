@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import Offers from "./pages/Offers";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path="/sign-up" element={<SignUp />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         </Routes>
+        {/* Navbar */}
+        <Navbar />
       </Router>
     </>
   );
