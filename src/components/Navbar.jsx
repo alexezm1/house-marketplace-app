@@ -9,7 +9,7 @@ function Navbar() {
   const location = useLocation();
 
   const activeRoute = (route) => {
-    if (route == location.pathname) {
+    if (route === location.pathname) {
       return true;
     }
   };
