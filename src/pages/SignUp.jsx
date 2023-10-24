@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -51,7 +52,7 @@ function SignUp() {
 
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong, please try again");
     }
   };
   return (
