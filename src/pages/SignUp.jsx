@@ -29,7 +29,7 @@ function SignUp() {
     }));
   };
 
-  const onSubmit = async (e) => {
+  const createAccount = async (e) => {
     e.preventDefault();
 
     try {
@@ -62,7 +62,7 @@ function SignUp() {
         </header>
 
         <main>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={createAccount}>
             <input
               type="text"
               placeholder="Name"
