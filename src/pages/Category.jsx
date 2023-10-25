@@ -1,0 +1,85 @@
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  startAfter,
+} from "firebase/firestore";
+import { db } from "../firebase.config";
+import { toast } from "react-toastify";
+import Spinner from "../components/Spinner";
+
+function Category() {
+  const [listings, setListings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const params = useParams();
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        // Get a reference of listing collection
+        const listingCollection = collection(db, "listings");
+
+        // Query
+        const q = query(
+          listingCollection,
+          where("type", "==", params.categoryName),
+          orderBy("timestamp", "desc"),
+          limit(10)
+        );
+
+        // Execute query
+        const querySnapshot = await getDocs(q);
+
+        const listingsData = [];
+
+        querySnapshot.forEach((doc) => {
+          return listingsData.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+
+        setListings(listingsData);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Could not load listings");
+      }
+    };
+    fetchListings();
+  }, [params.categoryName]);
+  return (
+    <div className="category">
+      <header>
+        <p className="pageHeader">
+          {params.categoryName === "rent"
+            ? "Places for rent"
+            : "Places for sale"}
+        </p>
+
+        {loading ? (
+          <Spinner />
+        ) : listings && listings.length > 0 ? (
+          <>
+            <main>
+              <ul className="categoryListings">
+                {listings.map((listing) => (
+                  <h3 key={listing.id}>{listing.data.name}</h3>
+                ))}
+              </ul>
+            </main>
+          </>
+        ) : (
+          <p>No listings for {params.categoryName} </p>
+        )}
+      </header>
+    </div>
+  );
+}
+
+export default Category;
