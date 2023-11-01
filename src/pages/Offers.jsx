@@ -66,7 +66,11 @@ function Offers() {
             <main>
               <ul className="categoryListings">
                 {listings.map((listing) => (
-                  <ListingItem key={listing.id} listing={listing} />
+                  <ListingItem
+                    key={listing.id}
+                    id={listing.id}
+                    listing={listing.data}
+                  />
                 ))}
               </ul>
             </main>

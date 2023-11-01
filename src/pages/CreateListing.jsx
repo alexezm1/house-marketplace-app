@@ -122,7 +122,7 @@ function CreateListing() {
       } else {
         geolocation.lat = data.results[0].geometry.location.lat;
         geolocation.lng = data.results[0].geometry.location.lng;
-        location = data.results[0].formatted_address;
+        location = address;
       }
     } else {
       geolocation.lat = latitude;
@@ -183,6 +183,7 @@ function CreateListing() {
       ...formData,
       imgUrls,
       geolocation,
+      location: address,
       timestamp: serverTimestamp(),
     };
 
