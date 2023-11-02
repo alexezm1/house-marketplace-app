@@ -12,6 +12,8 @@ import SignUp from "./pages/SignUp";
 import Navbar from "./components/Navbar";
 import Category from "./pages/Category";
 import CreateListing from "./pages/CreateListing";
+import Listing from "./pages/Listing";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -21,6 +23,11 @@ function App() {
           <Route path="/" element={<Explore />}></Route>
           <Route path="/offers" element={<Offers />}></Route>
           <Route path="/category/:categoryName" element={<Category />}></Route>
+          <Route
+            path="/category/:categoryName/:listingId"
+            element={<Listing />}
+          ></Route>
+          <Route path="/contact/:landLordId" element={<Contact />}></Route>
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />}></Route>
           </Route>
