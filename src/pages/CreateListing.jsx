@@ -16,7 +16,7 @@ import Spinner from "../components/Spinner";
 function CreateListing() {
   const GEOCODING_KEY = process.env.REACT_APP_GEOCODING_KEY;
   const [loading, setLoading] = useState(false);
-  const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
+  const [geoLocationEnabled, setGeoLocationEnabled] = useState(false);
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
