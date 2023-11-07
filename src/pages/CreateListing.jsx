@@ -343,7 +343,7 @@ function CreateListing() {
                   type="number"
                   id="latitude"
                   value={latitude}
-                  onChange={changeButtons}
+                  onChange={changeInputs}
                   required
                 />
               </div>
@@ -354,7 +354,7 @@ function CreateListing() {
                   type="number"
                   id="longitude"
                   value={longitude}
-                  onChange={changeButtons}
+                  onChange={changeInputs}
                   required
                 />
               </div>
