@@ -120,8 +120,8 @@ function CreateListing() {
         location = undefined;
         toast.error("Enter a valid address");
       } else {
-        geolocation.lat = data.results[0].geometry.location.lat;
-        geolocation.lng = data.results[0].geometry.location.lng;
+        geolocation.lat = data.results[0].geometry?.location.lat;
+        geolocation.lng = data.results[0].geometry?.location.lng;
         location = address;
       }
     } else {
