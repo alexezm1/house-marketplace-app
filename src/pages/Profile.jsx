@@ -77,6 +77,10 @@ function Profile() {
     }
   };
 
+  const onEdit = (listingId) => {
+    navigate(`/edit-listing/${listingId}`);
+  };
+
   const logOut = () => {
     auth.signOut();
     navigate("/sign-in");
@@ -159,6 +163,7 @@ function Profile() {
                   listing={listing.data}
                   id={listing.id}
                   onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
                 />
               ))}
             </ul>
