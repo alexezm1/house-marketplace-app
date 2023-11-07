@@ -17,6 +17,7 @@ function EditListing() {
   const GEOCODING_KEY = process.env.REACT_APP_GEOCODING_KEY;
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
   const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
   const [formData, setFormData] = useState({
     type: "rent",
@@ -60,7 +61,7 @@ function EditListing() {
       toast.error("You cannot edit that listing");
       navigate("/");
     }
-  }, []);
+  }, [auth.currentUser.uid, listing, navigate]);
 
   // Fetch Listing to edit
   useEffect(() => {
@@ -93,6 +94,7 @@ function EditListing() {
     });
 
     return unsubscribe;
+    // eslint-disable-next-line
   }, []);
 
   const changeInputs = (e) => {
