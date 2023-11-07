@@ -48,7 +48,6 @@ function Slider() {
           slidesPerView={1}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          navigation
           style={{ height: "350px" }}
         >
           {listings.map(({ data, id }) => {

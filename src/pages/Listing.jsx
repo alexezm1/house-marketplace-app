@@ -44,7 +44,6 @@ function Listing() {
         slidesPerView={1}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        navigation
         style={{ height: "350px" }}
       >
         {listing.imgUrls.map((url, index) => {
