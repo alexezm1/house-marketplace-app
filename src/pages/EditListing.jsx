@@ -161,7 +161,7 @@ function EditListing() {
       }
     } else {
       geolocation.lat = latitude;
-      geolocation.long = longitude;
+      geolocation.lng = longitude;
       location = address;
     }
 
