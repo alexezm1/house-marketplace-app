@@ -17,6 +17,8 @@ import ListingItem from "../components/listings/ListingItem";
 function Category() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastFetchedListing, setLastFetchedListing] = useState(null);
+  const [noMoreListings, setNoMoreListings] = useState(false);
 
   const params = useParams();
 
@@ -37,6 +39,9 @@ function Category() {
         // Execute query
         const querySnapshot = await getDocs(q);
 
+        const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+        setLastFetchedListing(lastVisible);
+
         const listingsData = [];
 
         querySnapshot.forEach((doc) => {
@@ -54,6 +59,44 @@ function Category() {
     };
     fetchListings();
   }, [params.categoryName]);
+
+  // Pagination / Load More
+  const loadMoreListings = async () => {
+    try {
+      // Get a reference of listing collection
+      const listingCollection = collection(db, "listings");
+
+      // Query
+      const q = query(
+        listingCollection,
+        where("type", "==", params.categoryName),
+        orderBy("timestamp", "desc"),
+        startAfter(lastFetchedListing),
+        limit(10)
+      );
+
+      // Execute query
+      const querySnapshot = await getDocs(q);
+
+      const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+      setLastFetchedListing(lastVisible);
+
+      const listingsData = [];
+
+      querySnapshot.forEach((doc) => {
+        return listingsData.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setListings((prevState) => [...prevState, ...listingsData]);
+      setNoMoreListings(querySnapshot.empty);
+      setLoading(false);
+    } catch (error) {
+      toast.error("Could not load more listings");
+    }
+  };
   return (
     <div className="category">
       <header>
@@ -78,6 +121,16 @@ function Category() {
                 ))}
               </ul>
             </main>
+
+            <br />
+            <br />
+            {noMoreListings ? (
+              <p>No More Listings</p>
+            ) : (
+              <p className="loadMore" onClick={() => loadMoreListings()}>
+                Load More
+              </p>
+            )}
           </>
         ) : (
           <p>No listings for {params.categoryName} </p>
