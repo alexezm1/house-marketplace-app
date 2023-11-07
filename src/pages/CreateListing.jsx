@@ -340,7 +340,7 @@ function CreateListing() {
                 <label className="formLabel">Latitude</label>
                 <input
                   className="formInputSmall"
-                  type="number"
+                  type="text"
                   id="latitude"
                   value={latitude}
                   onChange={changeInputs}
@@ -351,7 +351,7 @@ function CreateListing() {
                 <label className="formLabel">Longitude</label>
                 <input
                   className="formInputSmall"
-                  type="number"
+                  type="text"
                   id="longitude"
                   value={longitude}
                   onChange={changeInputs}

@@ -18,7 +18,7 @@ function EditListing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line
-  const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
+  const [geoLocationEnabled, setGeoLocationEnabled] = useState(false);
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
@@ -377,10 +377,10 @@ function EditListing() {
                 <label className="formLabel">Latitude</label>
                 <input
                   className="formInputSmall"
-                  type="number"
+                  type="text"
                   id="latitude"
                   value={latitude}
-                  onChange={changeButtons}
+                  onChange={changeInputs}
                   required
                 />
               </div>
@@ -388,10 +388,10 @@ function EditListing() {
                 <label className="formLabel">Longitude</label>
                 <input
                   className="formInputSmall"
-                  type="number"
+                  type="text"
                   id="longitude"
                   value={longitude}
-                  onChange={changeButtons}
+                  onChange={changeInputs}
                   required
                 />
               </div>
